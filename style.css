@@ -1,0 +1,732 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+
+  /* Плавный скролл */
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Montserrat',sans-serif;
+  background:url('welcome.jpg') center/cover no-repeat fixed;
+  overflow-x:hidden;
+  color:white;
+  min-height:150vh;
+  position:relative;
+}
+
+/* Размытие */
+
+.bg-blur{
+  position:fixed;
+  inset:0;
+  backdrop-filter:blur(2px);
+  -webkit-backdrop-filter:blur(2px);
+  background:rgba(0,0,0,.28);
+  z-index:1;
+}
+
+/* Звезды */
+
+#stars,
+#stars2,
+#stars3{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:200%;
+  pointer-events:none;
+  z-index:0;
+}
+
+#stars{
+  background-image:
+    radial-gradient(2px 2px at 20px 30px,#fff,transparent),
+    radial-gradient(2px 2px at 120px 130px,#fff,transparent),
+    radial-gradient(1px 1px at 220px 230px,#fff,transparent);
+
+  background-size:300px 300px;
+
+  animation:starsMove 120s linear infinite;
+
+  opacity:.35;
+}
+
+#stars2{
+  background-image:
+    radial-gradient(2px 2px at 50px 160px,#c9f2ff,transparent),
+    radial-gradient(2px 2px at 160px 90px,#fff,transparent);
+
+  background-size:500px 500px;
+
+  animation:starsMove 180s linear infinite;
+
+  opacity:.2;
+}
+
+#stars3{
+  background-image:
+    radial-gradient(3px 3px at 90px 40px,#fff,transparent);
+
+  background-size:700px 700px;
+
+  animation:starsMove 260s linear infinite;
+
+  opacity:.15;
+}
+
+@keyframes starsMove{
+
+  from{
+    transform:translateY(0);
+  }
+
+  to{
+    transform:translateY(-1200px);
+  }
+}
+
+/* Снег */
+
+#snowCanvas{
+  position:fixed;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+}
+
+/* Курсор */
+
+.cursor{
+  width:34px;
+  height:34px;
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+}
+
+.cursor::before{
+  content:"❄";
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:28px;
+
+  color:#dff7ff;
+
+  filter:drop-shadow(0 0 10px #bfefff);
+
+  animation:cursorSpin 4s linear infinite;
+}
+
+@keyframes cursorSpin{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  z-index:5;
+
+  min-height:80vh;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:70px 20px 40px;
+}
+
+/* Лого */
+
+.coin-wrapper{
+  perspective:1400px;
+  margin-bottom:28px;
+  position:relative;
+}
+
+/* Orbit ring */
+
+.coin-wrapper::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-12px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(180,230,255,.18);
+
+  box-shadow:
+    0 0 24px rgba(180,230,255,.12);
+
+  animation:orbitRotate 14s linear infinite;
+}
+
+/* Glow pulse */
+
+.coin-wrapper::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:-20px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(127,232,255,.18),
+      transparent 70%
+    );
+
+  filter:blur(14px);
+
+  animation:logoGlow 5s ease-in-out infinite;
+}
+
+.coin{
+  position:relative;
+
+  width:145px;
+  height:145px;
+
+  border-radius:50%;
+  overflow:hidden;
+
+  border:2px solid rgba(255,255,255,.14);
+
+  background:rgba(255,255,255,.04);
+
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+
+  transform-style:preserve-3d;
+
+  animation:
+    logoFloat 5s ease-in-out infinite,
+    logoTilt 8s ease-in-out infinite;
+
+  box-shadow:
+    0 0 35px rgba(180,230,255,.22),
+    inset 0 0 20px rgba(255,255,255,.12);
+}
+
+/* Hologram shine */
+
+.coin::before{
+
+  content:"";
+
+  position:absolute;
+
+  top:-120%;
+  left:-40%;
+
+  width:60%;
+  height:300%;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(255,255,255,.45),
+      transparent
+    );
+
+  transform:rotate(18deg);
+
+  animation:hologramShine 4.5s ease-in-out infinite;
+
+  z-index:2;
+}
+
+/* Reflection */
+
+.coin::after{
+
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(255,255,255,.22),
+      transparent 40%
+    );
+
+  z-index:1;
+}
+
+.coin img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+
+  position:relative;
+  z-index:0;
+}
+
+/* Floating */
+
+@keyframes logoFloat{
+
+  0%,100%{
+    transform:
+      translateY(0px)
+      rotateX(0deg)
+      rotateY(0deg);
+  }
+
+  50%{
+    transform:
+      translateY(-8px)
+      rotateX(4deg)
+      rotateY(-4deg);
+  }
+}
+
+/* 3D tilt */
+
+@keyframes logoTilt{
+
+  0%{
+    filter:
+      drop-shadow(0 0 12px rgba(127,232,255,.25));
+  }
+
+  50%{
+    filter:
+      drop-shadow(0 0 22px rgba(127,232,255,.5));
+  }
+
+  100%{
+    filter:
+      drop-shadow(0 0 12px rgba(127,232,255,.25));
+  }
+}
+
+/* Orbit */
+
+@keyframes orbitRotate{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* Hologram sweep */
+
+@keyframes hologramShine{
+
+  0%{
+    transform:
+      translateX(-260%) rotate(18deg);
+    opacity:0;
+  }
+
+  15%{
+    opacity:1;
+  }
+
+  50%{
+    transform:
+      translateX(320%) rotate(18deg);
+    opacity:.9;
+  }
+
+  100%{
+    transform:
+      translateX(320%) rotate(18deg);
+    opacity:0;
+  }
+}
+
+/* Glow breathing */
+
+@keyframes logoGlow{
+
+  0%,100%{
+    opacity:.35;
+    transform:scale(1);
+  }
+
+  50%{
+    opacity:.7;
+    transform:scale(1.06);
+  }
+}
+
+/* Заголовок */
+
+.title{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+
+  font-size:58px;
+  font-weight:800;
+
+  letter-spacing:2px;
+}
+
+.title span{
+
+  background:linear-gradient(
+    90deg,
+    #dff8ff,
+    #7fe8ff,
+    #ffffff,
+    #7fe8ff
+  );
+
+  background-size:300% 300%;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  animation:titleFlow 5s ease infinite;
+}
+
+@keyframes titleFlow{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0% 50%;
+  }
+}
+
+/* crystal.png */
+
+.title-crystal{
+
+  width:42px;
+  height:42px;
+
+  object-fit:contain;
+
+  filter:
+    drop-shadow(0 0 14px rgba(180,230,255,.95));
+
+  animation:
+    crystalRotate 4s ease-in-out infinite,
+    crystalFloat 3s ease-in-out infinite;
+}
+
+@keyframes crystalRotate{
+
+  0%{
+    transform:rotateY(0deg);
+  }
+
+  50%{
+    transform:rotateY(25deg);
+  }
+
+  100%{
+    transform:rotateY(0deg);
+  }
+}
+
+@keyframes crystalFloat{
+
+  0%,100%{
+    translate:0 0;
+  }
+
+  50%{
+    translate:0 -4px;
+  }
+}
+
+/* Подзаголовок */
+
+.subtitle{
+  margin-top:18px;
+
+  font-size:17px;
+  font-weight:700;
+
+  color:#e9fbff;
+
+  text-shadow:
+    0 0 14px rgba(180,230,255,.6);
+
+  max-width:340px;
+
+  line-height:1.5;
+}
+
+/* Ссылки */
+
+.links-section{
+  position:relative;
+  z-index:5;
+
+  padding:40px 20px 120px;
+}
+
+.links-section h2{
+
+  text-align:center;
+
+  font-size:28px;
+  font-weight:800;
+
+  margin-bottom:26px;
+
+  background:linear-gradient(
+    90deg,
+    #ffffff,
+    #8fe9ff,
+    #ffffff
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* Кнопки */
+
+.links{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+}
+
+.glass-btn{
+  position:relative;
+
+  width:260px;
+
+  padding:15px 20px;
+
+  border-radius:18px;
+
+  text-decoration:none;
+
+  color:#f5fdff;
+
+  font-size:15px;
+  font-weight:700;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  background:rgba(255,255,255,.05);
+
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  overflow:hidden;
+
+  transition:.35s ease;
+
+  box-shadow:
+    0 0 16px rgba(180,230,255,.08);
+}
+
+.glass-btn::before{
+
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  border-radius:18px;
+
+  padding:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      white,
+      transparent
+    );
+
+  background-size:250% 250%;
+
+  animation:borderSnake 3s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+}
+
+.glass-btn::after{
+
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  border-radius:18px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.08),
+      transparent 70%
+    );
+
+  animation:buttonPulse 4s ease infinite;
+}
+
+@keyframes borderSnake{
+
+  0%{
+    background-position:0% 50%;
+  }
+
+  100%{
+    background-position:200% 50%;
+  }
+}
+
+@keyframes buttonPulse{
+
+  0%,100%{
+    opacity:.3;
+  }
+
+  50%{
+    opacity:.8;
+  }
+}
+
+.glass-btn:hover{
+
+  transform:translateY(-4px);
+
+  background:rgba(255,255,255,.08);
+
+  box-shadow:
+    0 0 24px rgba(180,230,255,.2);
+}
+
+/* Иконка */
+
+.btn-icon{
+
+  width:18px;
+  height:18px;
+
+  object-fit:contain;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 4px rgba(127,232,255,.8));
+
+  animation:iconMove 2.8s ease-in-out infinite;
+}
+
+@keyframes iconMove{
+
+  0%,100%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-2px);
+  }
+}
+
+/* Footer */
+
+footer{
+  position:relative;
+  z-index:5;
+
+  text-align:center;
+
+  padding-bottom:35px;
+
+  font-size:14px;
+  font-weight:700;
+
+  color:#e9fbff;
+
+  opacity:.8;
+}
+
+/* Телефон */
+
+@media(max-width:768px){
+
+  .coin{
+    width:120px;
+    height:120px;
+  }
+
+  .title{
+    font-size:42px;
+    gap:10px;
+  }
+
+  .title-crystal{
+    width:34px;
+    height:34px;
+  }
+
+  .subtitle{
+    font-size:15px;
+  }
+
+  .links-section h2{
+    font-size:24px;
+  }
+
+  .glass-btn{
+    width:230px;
+  }
+}
