@@ -11,7 +11,7 @@
 
 body{
   font-family:'Montserrat',sans-serif;
-  background:url('welcome.jpg') center/cover no-repeat fixed;
+  background:url('welcome.jpg') center/cover no-repeat;
   overflow-x:hidden;
   color:white;
   min-height:150vh;
