@@ -27,7 +27,7 @@ coin.addEventListener('click', () => {
 });
 
 
-/* Загрузка ссылок из JSON */
+/* Загрузка ссылок */
 
 async function loadLinks() {
 
@@ -64,16 +64,6 @@ async function loadLinks() {
       },
 
       {
-        title: 'Резерв',
-        url: data.reserve
-      },
-
-      {
-        title: 'Сотрудничество',
-        url: data.cooperation
-      },
-
-      {
         title: 'Наш бот',
         url: data.bot
       }
@@ -107,16 +97,11 @@ async function loadLinks() {
 
   catch (error) {
 
-    console.error(
-      'Ошибка загрузки links.json:',
-      error
-    );
+    console.error(error);
 
   }
 
 }
 
-
-/* Запуск */
 
 loadLinks();
